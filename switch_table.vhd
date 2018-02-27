@@ -8,9 +8,9 @@ entity switch_table is port(
 	clock: in std_logic;
 	reset: in std_logic;
 	source_addr: in std_logic_vector(47 downto 0);
-	source_port: in std_logic_vector(1 downto 0);
+	source_port: in std_logic_vector(2 downto 0);
 	dest_addr: in std_logic_vector(47 downto 0);
-	dest_port: in std_logic_vector(1 downto 0);
+	dest_port: in std_logic_vector(2 downto 0);
 
 	-- OUTPUTS
 	input_rdy: out std_logic;
@@ -24,13 +24,13 @@ architecture table_arch of switch_table is
 	
 	-- INPUT SIGNALS, MIGHT NOT NEED
 	signal SA: std_logic_vector(47 downto 0);
-	signal SP: std_logic_vector(1 downto 0);
+	signal SP: std_logic_vector(2 downto 0);
 	signal DA: std_logic_vector(47 downto 0);
-	signal DP: std_logic_vector(1 downto 0);
+	signal DP: std_logic_vector(2 downto 0);
 	
 	-- TABLE SIGNALS
 	signal table_addr: std_logic_vector(47 downto 0);
-	signal table_port: std_logic_vector(1 downto 0);
+	signal table_port: std_logic_vector(2 downto 0);
 	
 	-- OTHER SIGNALS
 	signal broadcast_sig: std_logic;
@@ -54,7 +54,6 @@ architecture table_arch of switch_table is
 		-- asynchronous reset
 		elsif (clock'event and clock = '1') then
 			state_reg <= state_next;
-		-- synchronous state update
 		end if;
 	end process;
 	
